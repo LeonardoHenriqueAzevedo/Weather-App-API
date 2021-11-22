@@ -53,8 +53,6 @@ function fetchWeatherData() {
     fetch(`http://api.weatherapi.com/v1/current.json?key=f68df3e81b12478999c14655212211&q=${cityInput}&aqi=yes`)
         .then(response => response.json()).then(data => {
             temp.innerHTML = `${data.current.temp_c}&#176`;
-            // conditionOutput.innerHTML = data.current.condition.text;
-
             // Get the date and time from the city
             const date = data.location.localtime;
             const y = parseInt(date.substr(0, 4));
