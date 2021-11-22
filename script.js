@@ -58,7 +58,7 @@ function dayOfTheWeek(day, month, year) {
 
 function fetchWeatherData() {
     // Fetch the data and convert it to a regular JS object 
-    fetch(`http://api.weatherapi.com/v1/current.json?key=4bb59ca8e1cc49f5acb05942212211=${cityInput}`)
+    fetch(`http://api.weatherapi.com/v1/current.json?key=f68df3e81b12478999c14655212211=${cityInput}`)
         .then(response => response.json()).then(data => {
             temp.innerHTML = data.current.temp_c + "$#176;";
             conditionOutput.innerHTML = data.current.condition.text;
@@ -98,7 +98,30 @@ function fetchWeatherData() {
 
             if (code == 1000) {
                 // Set the background image to clear
-                app.style.backgroundImage = `url(./images/${timeOfDay}/night4.jpg)`
+                app.style.backgroundImage = `url(./images/${timeOfDay}/clear.jpg)`
+                // Change the btn color
+                btn.style.background = "#e5ba92";
+                if (timeOfDay == "night") {
+                    btn.style.background = "#181e27";
+                }
+            }
+
+            // Background image to cloudy weather
+            else if (
+                code == 1003 ||
+                code == 1006 ||
+                code == 1009 ||
+                code == 1030 ||
+                code == 1069 ||
+                code == 1087 ||
+                code == 1135 ||
+                code == 1273 ||
+                code == 1276 ||
+                code == 1279 ||
+                code == 1282
+            ) {
+                app.style.backgroundImage = `url(./images/${timeOfDay}/cloud.jpg)`;
+
             }
         })
 }
