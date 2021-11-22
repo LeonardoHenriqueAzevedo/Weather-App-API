@@ -22,7 +22,7 @@ h1, h3{
     color: #fff;
     position: relative;
     transition: 500ms;
-    opacity: 1; /* change to 0 later */
+    opacity: 0;
 }
 
 .weather_app::before{

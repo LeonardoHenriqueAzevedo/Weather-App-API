@@ -45,20 +45,20 @@ form.addEventListener("submit", e => {
 
 function dayOfTheWeek(day, month, year) {
     const weekday = [
-        "Segunda",
-        "Terça",
-        "Quarta",
-        "Quinta",
-        "Sexta",
-        "Sábado",
-        "Domingo"
+        "Monday",
+        "Tuesday",
+        "Wednesday",
+        "Thursday",
+        "Friday",
+        "Saturday",
+        "Sunday"
     ];
     return weekday[new Date(`${day}/${month}/${year}`).getDay()];
 };
 
 function fetchWeatherData() {
     // Fetch the data and convert it to a regular JS object 
-    fetch(`http://api.weatherapi.com/v1/current.json?key=f68df3e81b12478999c14655212211=${cityInput}`)
+    fetch(`http://api.weatherapi.com/v1/current.json?key=f68df3e81b12478999c14655212211&q=${cityInput}&aqi=yes`)
         .then(response => response.json()).then(data => {
             temp.innerHTML = data.current.temp_c + "$#176;";
             conditionOutput.innerHTML = data.current.condition.text;
@@ -120,8 +120,51 @@ function fetchWeatherData() {
                 code == 1279 ||
                 code == 1282
             ) {
-                app.style.backgroundImage = `url(./images/${timeOfDay}/cloud.jpg)`;
-
+                app.style.backgroundImage = `url(./images/${timeOfDay}/cloudy.jpg)`;
+                btn.style.background = "#fa6d1b";
+                if (timeOfDay == "night") {
+                    btn.style.background = "#181e27";
+                }
+            } else if (
+                // Rain
+                code == 1063 ||
+                code == 1072 ||
+                code == 1150 ||
+                code == 1153 ||
+                code == 1180 ||
+                code == 1183 ||
+                code == 1186 ||
+                code == 1189 ||
+                code == 1192 ||
+                code == 1195 ||
+                code == 1204 ||
+                code == 1207 ||
+                code == 1240 ||
+                code == 1243 ||
+                code == 1246 ||
+                code == 1249 ||
+                code == 1252
+            ) {
+                app.style.backgroundImage = `url(./images/${timeOfDay}/rainy.jpg)`;
+                btn.style.background = "#647d75";
+                if (timeOfDay == "night") {
+                    btn.style.background = "#325c80";
+                }
+            } else {
+                // Snow
+                app.style.backgroundImage = `url(./images/${timeOfDay}/snowy.jpg)`;
+                btn.style.background = "#4d72aa";
+                if (timeOfDay == "night") {
+                    btn.style.background = "#1b1b1b";
+                }
             }
-        })
+            app.style.opacity = "1";
+        }).catch(() => {
+            alert("Cidade não foi encontrada, por favor tente novamente");
+            app.style.opacity = "1";
+        });
 }
+
+fetchWeatherData();
+
+app.style.opacity = "1";
