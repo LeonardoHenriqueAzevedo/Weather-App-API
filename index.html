@@ -14,53 +14,55 @@
     <div class="weather_app">
         <div class="container">
             <h3 class="brand">Clima</h3>
-            <h1 class="temp">16&#176</h1>
-            <div class="city-time">
-                <h1 class="name">São Paulo</h1>
-                <small>
-                    <span class="time">20:57</span>
-                    -
-                    <span class="date">
-                        Domingo 21 de Novembro
-                    </span>
-                </small>
-            </div>
-            <div class="weather">
-                <img src="./icons/day/113.png" class="icon" alt="icon" width="50" length="50" />
-                <span class="condition">Nublado</span>
+            <div>
+                <h1 class="temp">16&#176</h1>
+                <div class="city_time">
+                    <h1 class="name">São Paulo</h1>
+                    <small>
+                        <span class="time">20:57</span>
+                        -
+                        <span class="date">
+                            Domingo 21 de Novembro
+                        </span>
+                    </small>
+                </div>
+                <div class="weather">
+                    <img src="./icons/day/113.png" class="icon" alt="icon" width="50" length="50" />
+                    <span class="condition">Nublado</span>
+                </div>
             </div>
         </div>
+
+        <div class="panel">
+            <form id="locationInput">
+                <input type="text" class="search" placeholder="Procure uma localização..." />
+                <button type="submit" class="submit"><i class="fas fa-search"></i></button>
+            </form>
+
+            <ul class="cities">
+                <li class="city">Rio De Janeiro</li>
+                <li class="city">Fortaleza</li>
+                <li class="city">Porto Alegre</li>
+                <li class="city">Manaus</li>
+            </ul>
+
+            <ul class="details">
+                <h4>Detalhes do Clima</h4>
+                <li>
+                    <span>Nublado</span>
+                    <span class="cloud">90%</span>
+                </li>
+                <li>
+                    <span>Umidade</span>
+                    <span class="humidity">70%</span>
+                </li>
+                <li>
+                    <span>Vento</span>
+                    <span class="wind">7km/h</span>
+                </li>
+            </ul>
+        </div>
     </div>
-    <div class="panel">
-        <form id="locationInput">
-            <input type="text" class="search" placeholder="Procure uma localização..." />
-            <button type="submit" class="submit"><i class="fas fa-search"></i></button>
-        </form>
-
-        <ul class="cities">
-            <li class="city">Rio De Janeiro</li>
-            <li class="city">Fortaleza</li>
-            <li class="city">Porto Alegre</li>
-            <li class="city">Manaus</li>
-        </ul>
-
-        <ul class="details">
-            <h4>Detalhes do Clima</h4>
-            <li>
-                <span>Nublado</span>
-                <span class="cloud">90%</span>
-            </li>
-            <li>
-                <span>Umidade</span>
-                <span class="humidity">70%</span>
-            </li>
-            <li>
-                <span>Vento</span>
-                <span class="wind">7km/h</span>
-            </li>
-        </ul>
-    </div>
-
 
     <script src="./script.js"></script>
 </body>
