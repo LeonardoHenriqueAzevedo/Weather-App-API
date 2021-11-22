@@ -44,21 +44,12 @@ form.addEventListener("submit", e => {
 });
 
 function dayOfTheWeek(day, month, year) {
-    const weekday = [
-        "Segunda",
-        "Terça",
-        "Quarta",
-        "Quinta",
-        "Sexta",
-        "Sábado",
-        "Domingo"
-    ];
-    return weekday[new Date(`${day}/${month}/${year}`).getDay()];
+    return new Date(`${day}/${month}/${year}`);
 };
 
 function fetchWeatherData() {
     // Fetch the data and convert it to a regular JS object 
-    fetch(`http://api.weatherapi.com/v1/current.json?key=f68df3e81b12478999c14655212211&q=${cityInput}&aqi=yes`)
+    fetch(`http://api.weatherapi.com/v1/current.json?key=f68df3e81b12478999c14655212211&q=${cityInput}&aqi=no`)
         .then(response => response.json()).then(data => {
             temp.innerHTML = `${data.current.temp_c}&#176`;
             conditionOutput.innerHTML = data.current.condition.text;
@@ -71,8 +62,8 @@ function fetchWeatherData() {
             const time = date.substr(11);
 
             // Reformat the date and add
-            // Format 20:51 - Segunda 10/8/2021
-            dateOutput.innerHTML = `${dayOfTheWeek(d, m, y)} ${d}/${m}/${y}`;
+            // Format 20:51 - 10/8/2021
+            dateOutput.innerHTML = `${d}/${m}/${y}`;
             timeOutput.innerHTML = time;
             // Add the name of the city
             nameOutput.innerHTML = data.location.name;
