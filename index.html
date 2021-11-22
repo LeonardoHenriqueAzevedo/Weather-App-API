@@ -5,6 +5,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://kit.fontawesome.com/c2aa9b01da.js" crossorigin="anonymous"></script>
     <link rel="stylesheet" href="./style.css">
     <title>Clima</title>
 </head>
@@ -13,7 +14,28 @@
     <div class="weather_app">
         <div class="container">
             <h3 class="brand">Clima</h3>
+            <h1 class="temp">16&#176</h1>
+            <div class="city-time">
+                <h1 class="name">São Paulo</h1>
+                <small>
+                    <span class="time">20:57</span>
+                    -
+                    <span class="date">
+                        Domingo 21 de Novembro
+                    </span>
+                </small>
+            </div>
+            <div class="weather">
+                <img src="./icons/day/113.png" class="icon" alt="icon" width="50" length="50" />
+                <span class="condition">Nublado</span>
+            </div>
         </div>
+    </div>
+    <div class="panel">
+        <form id="locationInput">
+            <input type="text" class="search" placeholder="Procure uma localização..." />
+            <button type="submit" class="submit"><i class="fas fa-search"></i></button>
+        </form>
     </div>
 
 
