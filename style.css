@@ -169,11 +169,26 @@ h1, h3{
         width: 100%;
         top: initial;
     }
+    h1.temp{
+        font-size: 60px;
+    }
+    h1.name {
+        font-size: 40px;
+    }
+    span.time, span.date {
+        font-size: 12px;
+    }
 }
 
 @media screen and (max-width: 500px){
     html{
         font-size: 12px;
+    }
+    h1.temp{
+        font-size: 50px;
+    }
+    h1.name {
+        font-size: 30px;
     }
 }
 
