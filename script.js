@@ -50,10 +50,10 @@ function dayOfTheWeek(day, month, year) {
 function fetchWeatherData() {
     // Fetch the data and convert it to a regular JS object 
     // Insert your key below
-    fetch(`http://api.weatherapi.com/v1/current.json?key=f68df3e81b12478999c14655212211&q=${cityInput}&aqi=no`)
+    fetch(`http://api.weatherapi.com/v1/current.json?key=f68df3e81b12478999c14655212211&q=${cityInput}&aqi=yes`)
         .then(response => response.json()).then(data => {
             temp.innerHTML = `${data.current.temp_c}&#176`;
-            conditionOutput.innerHTML = data.current.condition.text;
+            // conditionOutput.innerHTML = data.current.condition.text;
 
             // Get the date and time from the city
             const date = data.location.localtime;
@@ -92,12 +92,12 @@ function fetchWeatherData() {
                 // Set the background image to clear
                 app.style.backgroundImage = `url(./images/${timeOfDay}/clear.jpg)`
                 // Change the btn color
+                conditionOutput.innerHTML = "Limpo";
                 btn.style.background = "#e5ba92";
                 if (timeOfDay == "night") {
                     btn.style.background = "#181e27";
                 }
             }
-
             // Background image to cloudy weather
             else if (
                 code == 1003 ||
@@ -114,6 +114,7 @@ function fetchWeatherData() {
             ) {
                 app.style.backgroundImage = `url(./images/${timeOfDay}/cloudy.jpg)`;
                 btn.style.background = "#fa6d1b";
+                conditionOutput.innerHTML = "Nublado";
                 if (timeOfDay == "night") {
                     btn.style.background = "#181e27";
                 }
@@ -139,6 +140,7 @@ function fetchWeatherData() {
             ) {
                 app.style.backgroundImage = `url(./images/${timeOfDay}/rainy.jpg)`;
                 btn.style.background = "#647d75";
+                conditionOutput.innerHTML = "Chuva";
                 if (timeOfDay == "night") {
                     btn.style.background = "#325c80";
                 }
@@ -146,6 +148,7 @@ function fetchWeatherData() {
                 // Snow
                 app.style.backgroundImage = `url(./images/${timeOfDay}/snowy.jpg)`;
                 btn.style.background = "#4d72aa";
+                conditionOutput.innerHTML = "Neve";
                 if (timeOfDay == "night") {
                     btn.style.background = "#1b1b1b";
                 }
