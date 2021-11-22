@@ -71,7 +71,7 @@ function fetchWeatherData() {
             const time = date.substr(11);
 
             // Reformat the date and add
-            // Formato 20:51 - Segunda 10/8/2021
+            // Format 20:51 - Segunda 10/8/2021
             dateOutput.innerHTML = `${dayOfTheWeek(d, m, y)} ${d}/${m}/${y}`;
             timeOutput.innerHTML = time;
             // Add the name of the city
