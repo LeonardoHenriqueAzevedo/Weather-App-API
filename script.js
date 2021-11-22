@@ -1,0 +1,104 @@
+// Get all elements
+const app = document.querySelector(".weather_app");
+const temp = document.querySelector(".temp");
+const dateOutput = document.querySelector(".date");
+const timeOutput = document.querySelector(".time");
+const conditionOutput = document.querySelector(".condition");
+const nameOutput = document.querySelector(".name");
+const icon = document.querySelector(".icon");
+const cloudOutput = document.querySelector(".cloud");
+const humidityOutput = document.querySelector(".humidity");
+const windOutput = document.querySelector(".wind");
+const form = document.getElementById("locationInput");
+const search = document.querySelector(".search");
+const btn = document.querySelector(".submit");
+const cities = document.querySelectorAll(".city");
+
+// Default City
+let cityInput = "São Paulo";
+
+// Add Click event to each city
+cities.forEach(city => {
+    city.addEventListener("click", e => {
+        // Change default city
+        cityInput = e.target.innerHTML;
+        // Fetch and displays all the data - Weather API
+        fetchWeatherData();
+
+        app.style.opacity = "0";
+    });
+})
+
+form.addEventListener("submit", e => {
+    if (search.value.length == 0) {
+        alert("Por favor informe uma cidade");
+    } else {
+        cityInput = search.value;
+        fetchWeatherData();
+        search.value = "";
+
+        app.style.opacity = "0";
+    }
+
+    e.preventDefault();
+});
+
+function dayOfTheWeek(day, month, year) {
+    const weekday = [
+        "Segunda",
+        "Terça",
+        "Quarta",
+        "Quinta",
+        "Sexta",
+        "Sábado",
+        "Domingo"
+    ];
+    return weekday[new Date(`${day}/${month}/${year}`).getDay()];
+};
+
+function fetchWeatherData() {
+    // Fetch the data and convert it to a regular JS object 
+    fetch(`http://api.weatherapi.com/v1/current.json?key=4bb59ca8e1cc49f5acb05942212211=${cityInput}`)
+        .then(response => response.json()).then(data => {
+            temp.innerHTML = data.current.temp_c + "$#176;";
+            conditionOutput.innerHTML = data.current.condition.text;
+
+            // Get the date and time from the city
+            const date = data.location.localtime;
+            const y = parseInt(date.substr(0, 4));
+            const m = parseInt(date.substr(5, 2));
+            const d = parseInt(date.substr(8, 2));
+            const time = date.substr(11);
+
+            // Reformat the date and add
+            // Formato 20:51 - Segunda 10/8/2021
+            dateOutput.innerHTML = `${dayOfTheWeek(d, m, y)} ${d}/${m}/${y}`;
+            timeOutput.innerHTML = time;
+            // Add the name of the city
+            nameOutput.innerHTML = data.location.name;
+            // Get the icon
+            const iconId = data.current.condition.icon.substr("//cdn.weatherapi.com/weather/64x64/".length);
+            // Reformat the icon url
+            icon.src = "./icons/" + iconId;
+
+            // Add weather details
+            cloudOutput.innerHTML = data.current.cloud + "%";
+            humidityOutput.innerHTML = data.current.humidity + "%";
+            windOutput.innerHTML = data.current.wind_kph + "km/h";
+
+            // Default time of day
+            let timeOfDay = "day";
+            // Unique ID for each weather condition
+            const code = data.current.condition.code;
+
+            // Change to night
+            if (!data.current.is_day) {
+                timeOfDay = "night";
+            }
+
+            if (code == 1000) {
+                // Set the background image to clear
+                app.style.backgroundImage = `url(./images/${timeOfDay}/night4.jpg)`
+            }
+        })
+}
