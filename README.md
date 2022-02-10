@@ -1,2 +1,3 @@
-# Weather App API
- A  simple weather app made with HTML, CSS, Javascript and weather API
+# ✔️ Project
+A website to check the weather in different places using the weather API
+
